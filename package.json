@@ -1,0 +1,11 @@
+{
+  "name": "phaserfirst",
+  "version": "1.0.0",
+  "description": "jeux avec phaser",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "olygood",
+  "license": "ISC"
+}

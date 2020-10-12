@@ -1,0 +1,14 @@
+/* generique-----------------------------------*/
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: lightgoldenrodyellow;
+}
+.container{
+ position: relative;
+}
+.game{
+    border: 3px solid blue;
+}
