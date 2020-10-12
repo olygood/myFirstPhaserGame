@@ -20,7 +20,7 @@ const game = new Phaser.Game(config);
 let clickButtonDown = false;
 let clickButtonUp = false;
 let player = null;
-const cursor = null;
+let cursor = null;
 /**
  * function preload: ---------------------------------------------------------------------------------
  */
@@ -98,6 +98,12 @@ buttonUp.on("pointerdown", function(){
  buttonRight.on("pointeright", function(){
      console.log("pointer out");
  });
+ /**
+  * cursor = createCursorKeys(); // contient les 6valeur, up, down, left, right, shift, space
+  */
+ cursor = this.input.keyboard.createCursorKeys();
+
+
 }
 /**
  * function update:------------------------------------------------------------------------------
@@ -109,4 +115,17 @@ function update(time, delta){
     if(clickButtonDown){
         player.setScale(player.scaleX -0.1, player.scaleY -0.1);
     }
+    /**
+     * deplacement player
+     */
+    if(cursor.left.isDown){
+        player.x -= 5;
+    }else if(cursor.right.isDown){
+        player.x += 5;
+    }else if(cursor.up.isDown){
+        player.y -=5;
+    }else if(cursor.down.isDown){
+        player.y += 5;
+    }
+   
 }
