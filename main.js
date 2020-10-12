@@ -15,12 +15,13 @@ const config = {
 /**
  * variables Global---------------------------------------------------------------------------------
  */
-const game = new Phaser.Game(config);
 
-let clickButtonDown = false;
-let clickButtonUp = false;
 let player = null;
+let clickButtonUp = false;
+let clickButtonDown = false;
 let cursor = null;
+let Vkey;
+const game = new Phaser.Game(config);
 /**
  * function preload: ---------------------------------------------------------------------------------
  */
@@ -31,6 +32,7 @@ function preload(){
     this.load.image("buttonDown", "./assets/down.png");
     this.load.image("buttonLeft", "./assets/left.png");
     this.load.image("buttonRight", "./assets/right.png");
+    this.load.image("player_kick_R","./assets/player_kick.png" );
 }
 /**
  * function create:---------------------------------------------------------------------------------------
@@ -101,7 +103,11 @@ buttonUp.on("pointerdown", function(){
  /**
   * cursor = createCursorKeys(); // contient les 6valeur, up, down, left, right, shift, space
   */
- cursor = this.input.keyboard.createCursorKeys();
+cursor = this.input.keyboard.createCursorKeys();
+this.input.keyboard.on("keydown_B", function(){
+    console.log("coucou");
+})
+Vkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.V);
 
 
 }
@@ -116,7 +122,7 @@ function update(time, delta){
         player.setScale(player.scaleX -0.1, player.scaleY -0.1);
     }
     /**
-     * deplacement player
+     * deplacement player elever les else et laisser que les if pour aller en diagonal
      */
     if(cursor.left.isDown){
         player.x -= 5;
@@ -127,5 +133,11 @@ function update(time, delta){
     }else if(cursor.down.isDown){
         player.y += 5;
     }
-   
+    if(Vkey.isDown){
+        player.setTexture("player_kick_R");
+    }
+    if(Vkey.isUp){
+        player.setTexture("player");
+    }
+ 
 }
